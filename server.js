@@ -8,11 +8,10 @@ const app = express();
 //app.get('/', (req, res) => res.send('Hello'));
 
 
-
-
 // http://localhost:3000/api/v1/list にアクセスしてきたときに
 // TODOリストを返す
 app.get('/api/K61_0', (req, res) => {
+//app.get('/', (req, res) => {
     // クライアントに送るJSONデータ
 //    const todoList = [
 //        { title: 'JavaScriptを勉強する', done: true },
@@ -44,6 +43,13 @@ app.get('/api/K61_0', (req, res) => {
         res.json(error_401);
         return;
     }
+    else if (param_timestamp.length != 14)
+    {
+        // URLパラメータエラー
+        // JSONを送信する
+        res.json(error_401);
+        return;
+    }
     else if (param_company_cd != "11111")
     {
         // 認証エラー
@@ -60,11 +66,45 @@ app.get('/api/K61_0', (req, res) => {
     }
     else
     {
-        var yyyy = param_date.substr(0,4);
+        var num_param_timestamp = parseInt(param_timestamp.substr(0,4)) + 
+                                  parseInt(param_timestamp.substr(4,2)) + 
+                                  parseInt(param_timestamp.substr(6,2)) + 
+                                  parseInt(param_timestamp.substr(8,2)) + 
+                                  parseInt(param_timestamp.substr(10,2)) + 
+                                  parseInt(param_timestamp.substr(12,2));
+        var date = new Date();
+        var ts_yyyy = date.getFullYear();
+        var ts_MM = date.getMonth() + 1;
+        var num_now_timestamp = date.getFullYear() +
+                                date.getMonth() + 1 +
+                                date.getDate() +
+                                date.getHours() +
+                                date.getMinutes() +
+                                date.getSeconds();
+        
+        var is_error_timestamp = false;
+        if (num_param_timestamp > num_now_timestamp)
+        {
+            is_error_timestamp = true;
+        }
+        else if (num_param_timestamp < (num_now_timestamp - 60))
+        {
+              is_error_timestamp = true;
+        }
+        
+        if (is_error_timestamp == true)
+        {
+          // URLパラメータエラー
+          // JSONを送信する
+          res.json(error_401);
+          return;
+        }
+      
+        var param_date_yyyy = param_date.substr(0,4);
         //console.log(yyyy);
-        var MM = param_date.substr(4,2);
+        var param_date_MM = param_date.substr(4,2);
         //console.log(MM);
-        var dd = param_date.substr(6,2);
+        var param_date_dd = param_date.substr(6,2);
         //console.log(dd);
 
         // status ok 2件
@@ -76,8 +116,8 @@ app.get('/api/K61_0', (req, res) => {
                     {
                         "assessment_schedule_no": 1,
                         "business_discussion_id": 20255267,
-                        "startdate": yyyy + "%2F" + MM + "%2F" + dd + "+09%3A00%3A00",
-                        "enddate": yyyy + "%2F" + MM + "%2F" + dd + "+12%3A00%3A00",
+                        "startdate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+09%3A00%3A00",
+                        "enddate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+12%3A00%3A00",
                         "customer_name": "%E5%B1%B1%E7%94%B0+%E5%A4%AA%E9%83%8E",
                         "tel": 11111111111,
                         "zip_code": "111-1111",
@@ -94,8 +134,8 @@ app.get('/api/K61_0', (req, res) => {
                     {
                         "assessment_schedule_no": 2,
                         "business_discussion_id": 20255380,
-                        "startdate": yyyy + "%2F" + MM + "%2F" + dd + "+13%3A30%3A00",
-                        "enddate": yyyy + "%2F" + MM + "%2F" + dd + "+16%3A00%3A00",
+                        "startdate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+13%3A30%3A00",
+                        "enddate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+16%3A00%3A00",
                         "customer_name": "%E9%88%B4%E6%9C%A8+%E8%8A%B1%E5%AD%90",
                         "tel": 22222222222,
                         "zip_code": "222-2222",
@@ -116,7 +156,6 @@ app.get('/api/K61_0', (req, res) => {
         // JSONを送信する
         res.json(assessment_schedule);
     }
-
 });
 
 // ポート3000でサーバを立てる
