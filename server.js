@@ -20,16 +20,16 @@ app.get('/api/K61_0', (req, res) => {
 //    ];
     // URLパラメータ取得
     var param_company_cd = req.query.company_cd;
-    var param_employee = req.query.employee;
-    var param_date = req.query.date;
+    var param_employee   = req.query.employee;
+    var param_date       = req.query.date;
     var param_session_id = req.query.session_id;
     var param_timestamp  = req.query.timestamp;
 
     if (param_company_cd == undefined || 
-        param_employee == undefined ||
-        param_date == undefined ||
+        param_employee   == undefined ||
+        param_date       == undefined ||
         param_session_id == undefined ||
-        param_timestamp == undefined)
+        param_timestamp  == undefined)
     {
         // URLパラメータエラー
         // JSONを送信する
@@ -83,21 +83,23 @@ app.get('/api/K61_0', (req, res) => {
                                 date.getSeconds();
         
         var is_error_timestamp = false;
+        //console.log("num_param_timestamp:"+num_param_timestamp);
+        //console.log("num_now_timestamp:"+num_now_timestamp);
         if (num_param_timestamp > num_now_timestamp)
         {
             is_error_timestamp = true;
         }
         else if (num_param_timestamp < (num_now_timestamp - 60))
         {
-              is_error_timestamp = true;
+            is_error_timestamp = true;
         }
         
         if (is_error_timestamp == true)
         {
-          // URLパラメータエラー
-          // JSONを送信する
-          res.json(error_401);
-          return;
+            // URLパラメータエラー
+            // JSONを送信する
+            res.json(error_401);
+            return;
         }
       
         var param_date_yyyy = param_date.substr(0,4);
@@ -119,7 +121,7 @@ app.get('/api/K61_0', (req, res) => {
                         "startdate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+09%3A00%3A00",
                         "enddate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+12%3A00%3A00",
                         "customer_name": "%E5%B1%B1%E7%94%B0+%E5%A4%AA%E9%83%8E",
-                        "tel": 11111111111,
+                        "tel": "11111111111",
                         "zip_code": "111-1111",
                         "address": "%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E7%B4%80%E5%B0%BE%E4%BA%95%E7%94%BA4%E7%95%AA1%E5%8F%B7%E6%96%B0%E7%B4%80%E5%B0%BE%E4%BA%95%E7%94%BA%E3%83%93%E3%83%AB2F",
                         "model_year": "H23",
@@ -137,7 +139,7 @@ app.get('/api/K61_0', (req, res) => {
                         "startdate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+13%3A30%3A00",
                         "enddate": param_date_yyyy + "%2F" + param_date_MM + "%2F" + param_date_dd + "+16%3A00%3A00",
                         "customer_name": "%E9%88%B4%E6%9C%A8+%E8%8A%B1%E5%AD%90",
-                        "tel": 22222222222,
+                        "tel": "22222222222",
                         "zip_code": "222-2222",
                         "address": "%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E6%B5%85%E8%8D%89%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%93-%EF%BC%91",
                         "model_year": "R01",
