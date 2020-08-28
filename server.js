@@ -81,7 +81,9 @@ app.get('/api/K61_0', (req, res) => {
                                 date.getHours() +
                                 date.getMinutes() +
                                 date.getSeconds();
-        
+        // Date()の秒が  10秒くらい遅れているので加算
+        num_now_timestamp = num_now_timestamp + 10;
+      
         var is_error_timestamp = false;
         //console.log("num_param_timestamp:"+num_param_timestamp);
         //console.log("num_now_timestamp:"+num_now_timestamp);
