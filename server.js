@@ -243,103 +243,27 @@ const error_401 =
     {
         "status": 401,
         "assessment_schedule_total": 0,
-        "assessment_schedule_data": [
-            {
-                "assessment_schedule_no": null,
-                "business_discussion_id": null,
-                "startdate": null,
-                "enddate": null,
-                "customer_name": null,
-                "tel": null,
-                "zip_code": null,
-                "address": null,
-                "model_year": null,
-                "car_name": null,
-                "model": null,
-                "grade": null,
-                "total_distance": null,
-                "confirm_note": null,
-                "contact_information": null,
-                "business_discussion_result": null
-            }
-        ]
+        "assessment_schedule_data": []
     }
 ;
 const error_402 = 
     {
         "status": 402,
         "assessment_schedule_total": 0,
-        "assessment_schedule_data": [
-            {
-                "assessment_schedule_no": null,
-                "business_discussion_id": null,
-                "startdate": null,
-                "enddate": null,
-                "customer_name": null,
-                "tel": null,
-                "zip_code": null,
-                "address": null,
-                "model_year": null,
-                "car_name": null,
-                "model": null,
-                "grade": null,
-                "total_distance": null,
-                "confirm_note": null,
-                "contact_information": null,
-                "business_discussion_result": null
-            }
-        ]
+        "assessment_schedule_data": []
     }
 ;
 const error_500 = 
     {
         "status": 500,
         "assessment_schedule_total": 0,
-        "assessment_schedule_data": [
-            {
-                "assessment_schedule_no": null,
-                "business_discussion_id": null,
-                "startdate": null,
-                "enddate": null,
-                "customer_name": null,
-                "tel": null,
-                "zip_code": null,
-                "address": null,
-                "model_year": null,
-                "car_name": null,
-                "model": null,
-                "grade": null,
-                "total_distance": null,
-                "confirm_note": null,
-                "contact_information": null,
-                "business_discussion_result": null
-            }
-        ]
+        "assessment_schedule_data": []
     }
 ;
 const ok_0 = 
     {
         "status": 200,
         "assessment_schedule_total": 0,
-        "assessment_schedule_data": [
-            {
-                "assessment_schedule_no": null,
-                "business_discussion_id": null,
-                "startdate": null,
-                "enddate": null,
-                "customer_name": null,
-                "tel": null,
-                "zip_code": null,
-                "address": null,
-                "model_year": null,
-                "car_name": null,
-                "model": null,
-                "grade": null,
-                "total_distance": null,
-                "confirm_note": null,
-                "contact_information": null,
-                "business_discussion_result": null
-            }
-        ]
+        "assessment_schedule_data": []
     }
 ;
