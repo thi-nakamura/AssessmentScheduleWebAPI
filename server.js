@@ -238,7 +238,16 @@ app.get('/api/K61_0', (req, res) => {
 // ポート3000でサーバを立てる
 app.listen(3000, () => console.log('Listening on port 3000'));
 
+// 正常 0件
+const ok_0 = 
+    {
+        "status": 200,
+        "assessment_schedule_total": 0,
+        "assessment_schedule_data": []
+    }
+;
 
+// エラー系
 const error_401 = 
     {
         "status": 401,
@@ -256,13 +265,6 @@ const error_402 =
 const error_500 = 
     {
         "status": 500,
-        "assessment_schedule_total": 0,
-        "assessment_schedule_data": []
-    }
-;
-const ok_0 = 
-    {
-        "status": 200,
         "assessment_schedule_total": 0,
         "assessment_schedule_data": []
     }
